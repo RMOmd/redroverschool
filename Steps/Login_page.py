@@ -35,3 +35,11 @@ def enter_password(driver, pwd):
 def click_submit(driver):
     submit_button = driver.find_element(*PageObject.SauceDemo.LoginPage.login_button)
     submit_button.click()
+
+
+def login_method(driver, login, pwd):
+    enter_login(driver, login)
+    enter_password(driver,pwd)
+    click_submit(driver)
+
+

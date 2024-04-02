@@ -6,28 +6,21 @@ from Steps.Shop_steps import *
 
 def test_correct_login(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     logo_text = driver.find_element(*PageObject.SauceDemo.LoginPage.logo_text)  # находим лого страницы
     assert logo_text.text == "Swag Labs"  # проверяем что он есть
 
 
 def test_incorrect_login(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, incorrect_login)  # вводим некорректный логин
-    enter_password(driver, incorrect_password)  # вводим некорректный пароль
-    click_submit(driver)  # жмем кнопку логин
+    login_method(driver, incorrect_login, incorrect_password)  # вводим логин, пароль, логинимся
     err_msg = driver.find_element(*PageObject.SauceDemo.LoginPage.error_msg)  # находим ошибку
-    assert err_msg.text == "Epic sadface: Username and password do not match any user in this service"
-    # сверяем текст ошибки
+    assert err_msg.text == PageObject.SauceDemo.LoginPage.err_msg_text  # сверяем текст ошибки
 
 
 def test_add_item_in_cart_from_shop(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
     item = driver.find_element(*PageObject.SauceDemo.ShopPage.item_in_cart)
@@ -36,9 +29,7 @@ def test_add_item_in_cart_from_shop(driver):
 
 def test_delete_item_from_cart(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
     name = find_item_by_name(driver, "Sauce Labs Backpack")
@@ -53,9 +44,7 @@ def test_delete_item_from_cart(driver):
 
 def test_add_item_from_description(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар
     item.click()  # открываем его
     add_to_cart(driver, PageObject.SauceDemo.ItemDescription.add_btn)  # добавляем в корзину
@@ -65,9 +54,7 @@ def test_add_item_from_description(driver):
 
 def test_delete_item_from_description(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар по имени
     item.click()  # открываем его
     add_to_cart(driver, PageObject.SauceDemo.ItemDescription.add_btn)  # добавляем в корзину
@@ -76,9 +63,7 @@ def test_delete_item_from_description(driver):
 
 def test_item_description_by_name(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар по имени
     item.click()  # открываем его
     description = driver.find_element(*PageObject.SauceDemo.ItemDescription.description)
@@ -87,9 +72,7 @@ def test_item_description_by_name(driver):
 
 def test_item_description_by_image(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_img_name(driver, "Sauce Labs Backpack")  # находим товар по имени картинки
     item.click()  # открываем его
     description = driver.find_element(*PageObject.SauceDemo.ItemDescription.description)
@@ -98,9 +81,7 @@ def test_item_description_by_image(driver):
 
 def test_purchase_complete(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
     checkout_btn = driver.find_element(*PageObject.SauceDemo.CartCheckout.checkout_btn)
@@ -112,8 +93,9 @@ def test_purchase_complete(driver):
     continue_btn.click()  # жмем далее
     finish_btn = driver.find_element(*PageObject.SauceDemo.CartCheckout.finish_btn)
     finish_btn.click()  # жмем финиш
-    complete_text = driver.find_element(*PageObject.SauceDemo.CartCheckout.complete_text)  # находим надпись
-    assert complete_text.text == "Thank you for your order!"  # проверяем, что надпись состветствует
+    compl_text = driver.find_element(*PageObject.SauceDemo.CartCheckout.complete_text)  # находим надпись
+     # проверяем, что надпись состветствует
+    assert compl_text.text == PageObject.SauceDemo.CartCheckout.complete_msg
 
 
 def test_items_desc_sort_price(driver):

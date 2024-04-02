@@ -7,6 +7,7 @@ class LoginPage:
     login_button = (By.ID, "login-button")
     logo_text = (By.CLASS_NAME, "app_logo")
     error_msg = (By.TAG_NAME, "h3")
+    err_msg_text = "Epic sadface: Username and password do not match any user in this service"
 
 
 class ShopPage:
@@ -33,5 +34,6 @@ class CartCheckout:
     continue_btn = (By.ID, "continue")
     finish_btn = (By.ID, "finish")
     complete_text = (By.CLASS_NAME, "complete-header")
+    complete_msg = "Thank you for your order!"
 
 
