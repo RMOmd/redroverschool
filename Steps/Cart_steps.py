@@ -16,3 +16,4 @@ def go_to_cart(driver):
 def delete_item(driver):
     item = driver.find_element(*PageObject.SauceDemo.ShopPage.remove_btn)
     item.click()
+
