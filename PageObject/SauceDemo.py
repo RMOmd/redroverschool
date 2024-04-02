@@ -18,6 +18,12 @@ class ShopPage:
     remove_btn = (By.XPATH, "//*[text()='Remove']")
     item_in_shop = (By.XPATH, "//*[text()='locator']")
     item_img = (By.XPATH, "//img[@alt='locator']")
+    filter_btn = (By.CLASS_NAME, "select_container")
+    filter_az = (By.XPATH, "//*[@value='az']")
+    filter_za = (By.XPATH, "//*[@value='za']")
+    filter_lohi = (By.XPATH, "//*[@value='lohi']")
+    filter_hilo = (By.XPATH, "//*[@value='hilo']")
+    first_elem_price = (By.XPATH, '(//*[@class="inventory_item_price"])[1]')
 
 
 class ItemDescription:

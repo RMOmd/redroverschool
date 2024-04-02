@@ -1,3 +1,5 @@
+import time
+
 from credentials import *
 from Steps.Cart_steps import *
 from Steps.Login_page import *
@@ -98,13 +100,15 @@ def test_purchase_complete(driver):
     assert compl_text.text == PageObject.SauceDemo.CartCheckout.complete_msg
 
 
-def test_items_desc_sort_price(driver):
+def test_items_asc_sort_price(driver):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, correct_login)  # вводим логин
-    enter_password(driver, correct_password)  # вводим пароль
-    click_submit(driver)  # логинимся
-    first_item = (list_items_price(driver))[0]
-
-
-
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    first_item = (list_items_price(driver))[0]  # находим первую цену
+    filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
+    filter_item.click()  # жмем на фильтр
+    filter_lohi = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_lohi)
+    filter_lohi.click()  # выбираем от меньшего к большему
+    first_price = driver.find_element(*PageObject.SauceDemo.ShopPage.first_elem_price)
+    price = first_price.text.replace("$", '').split('.')[0]
+    assert int(first_item.split('.')[0]) > int(price)  # сверяем
 
