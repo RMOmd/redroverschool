@@ -1,5 +1,4 @@
 import time
-
 from credentials import *
 from Steps.Cart_steps import *
 from Steps.Login_page import *
@@ -129,10 +128,56 @@ def test_items_desc_sort_price(driver):
 def test_items_desc_sort_name(driver):
     wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
-    first_item = (list_items_names(driver))[0]  # находим первую цену
+    first_item = (list_items_names(driver))[0]  # находим первое имя
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
     filter_item.click()  # жмем на фильтр
     filter_za = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_za)
     filter_za.click()  # выбираем от большего к меньшему
     first_item_name = driver.find_element(*PageObject.SauceDemo.ShopPage.first_elem_name)
+    assert first_item.text != first_item_name.text  # сверяем имена
+
+
+def test_items_asc_sort_name(driver):
+    wait_page_open(driver)  # ждем открытия страницы
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    first_item = (list_items_names(driver))[0]  # находим первое имя
+    filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
+    filter_item.click()  # жмем на фильтр
+    filter_za = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_za)
+    filter_za.click()  # выбираем от большего к меньшему
+    filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
+    filter_item.click()  # жмем на фильтр
+    filter_az = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_az)
+    filter_az.click()  # выбираем от меньшего к большему
+    first_item_name = driver.find_element(*PageObject.SauceDemo.ShopPage.first_elem_name)
     assert first_item.text != first_item_name.text  # сверяем
+
+
+def test_about_btn(driver):
+    wait_page_open(driver)  # ждем открытия страницы
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)
+    menu_button.click()
+    about_button = driver.find_element(*PageObject.SauceDemo.ShopPage.about_btn)
+    about_button.click()
+    assert driver.current_url == url_from_about
+
+
+def test_reset_button(driver):
+    wait_page_open(driver)  # ждем открытия страницы
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
+    # находим все кнопки ДОБАВИТЬ(их 5 шт, т.к. 1 товар в корзине добавлен)
+    add_to_cart_btn_before = driver.find_elements(*PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)
+    count_before = len(add_to_cart_btn_before)  # считаем количество кнопок ДОБАВИТЬ
+    menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)  # находим кнопку меню
+    menu_button.click()  # жмем ее
+    reset_button = driver.find_element(*PageObject.SauceDemo.ShopPage.reset_btn)  # находим кнопку ресета
+    time.sleep(1)
+    reset_button.click()  # нажимаем на нее
+    driver.refresh()  # обновляем страницу
+    # находим все нопки добавить после ресета(их доожно быть 6, т.к. сделали сброс)
+    add_to_cart_btn_after = driver.find_elements(*PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)
+    count_after = len(add_to_cart_btn_after)  # считаем их
+    assert count_after > count_before  # сравниваем кол-во до и после
+

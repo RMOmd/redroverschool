@@ -25,6 +25,9 @@ class ShopPage:
     filter_hilo = (By.XPATH, "//*[@value='hilo']")
     first_elem_price = (By.XPATH, '(//*[@class="inventory_item_price"])[1]')
     first_elem_name = (By.CLASS_NAME, 'inventory_item_name')
+    menu_btn = (By.ID, "react-burger-menu-btn")
+    about_btn = (By.ID, "about_sidebar_link")
+    reset_btn = (By.ID, "reset_sidebar_link")
 
 
 class ItemDescription:

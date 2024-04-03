@@ -1,5 +1,5 @@
 import pytest
-from selenium.webdriver.common.by import By
+from credentials import *
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -18,7 +18,7 @@ def driver():
 
 
 def wait_page_open(driver):
-    driver.get('https://www.saucedemo.com/')
+    driver.get(url)
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.TAG_NAME, "body")))
 
 
@@ -41,5 +41,4 @@ def login_method(driver, login, pwd):
     enter_login(driver, login)
     enter_password(driver,pwd)
     click_submit(driver)
-
 
