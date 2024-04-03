@@ -129,11 +129,11 @@ def test_items_desc_sort_name(driver):
 
 def test_items_asc_sort_name(driver):
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    filter_za = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_za)
+    filter_za.click()  # выбираем от большего к меньшему
     first_item = (list_items_names(driver))[0]  # находим первое имя
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
     filter_item.click()  # жмем на фильтр
-    filter_za = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_za)
-    filter_za.click()  # выбираем от большего к меньшему
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
     filter_item.click()  # жмем на фильтр
     filter_az = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_az)
@@ -147,6 +147,7 @@ def test_about_btn(driver):
     menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)
     menu_button.click()
     about_button = driver.find_element(*PageObject.SauceDemo.ShopPage.about_btn)
+    time.sleep(0.5)
     about_button.click()
     assert driver.current_url == url_from_about
 
@@ -160,7 +161,7 @@ def test_reset_button(driver):
     menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)  # находим кнопку меню
     menu_button.click()  # жмем ее
     reset_button = driver.find_element(*PageObject.SauceDemo.ShopPage.reset_btn)  # находим кнопку ресета
-    time.sleep(1)
+    time.sleep(0.5)
     reset_button.click()  # нажимаем на нее
     driver.refresh()  # обновляем страницу
     # находим все нопки добавить после ресета(их доожно быть 6, т.к. сделали сброс)
@@ -175,6 +176,6 @@ def test_logout(driver):
     menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)  # находим кнопку меню
     menu_button.click()  # жмем ее
     logout_button = driver.find_element(*PageObject.SauceDemo.ShopPage.logout_btn)  # находим кнопку логаут
-    time.sleep(1)
+    time.sleep(0.5)
     logout_button.click()  # жмем ее
     assert driver.current_url == url  # проверяем что на странице авторизации

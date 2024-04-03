@@ -14,7 +14,7 @@ class ShopPage:
     backpack_item = (By.CLASS_NAME, "inventory_item_name")
     backpack_add_to_cart_btn = (By.XPATH, "//*[text()='Add to cart']")
     cart_btn = (By.CLASS_NAME, "shopping_cart_link")
-    item_in_cart = (By.CLASS_NAME, "inventory_details_name large_size")
+    item_in_cart = (By.CLASS_NAME, "inventory_item_name")
     remove_btn = (By.XPATH, "//*[text()='Remove']")
     item_in_shop = (By.XPATH, "//*[text()='locator']")
     item_img = (By.XPATH, "//img[@alt='locator']")
