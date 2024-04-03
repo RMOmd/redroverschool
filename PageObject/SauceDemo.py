@@ -24,6 +24,7 @@ class ShopPage:
     filter_lohi = (By.XPATH, "//*[@value='lohi']")
     filter_hilo = (By.XPATH, "//*[@value='hilo']")
     first_elem_price = (By.XPATH, '(//*[@class="inventory_item_price"])[1]')
+    first_elem_name = (By.CLASS_NAME, 'inventory_item_name')
 
 
 class ItemDescription:

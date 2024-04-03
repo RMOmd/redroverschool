@@ -112,3 +112,27 @@ def test_items_asc_sort_price(driver):
     price = first_price.text.replace("$", '').split('.')[0]
     assert int(first_item.split('.')[0]) > int(price)  # сверяем
 
+
+def test_items_desc_sort_price(driver):
+    wait_page_open(driver)  # ждем открытия страницы
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    first_item = (list_items_price(driver))[0]  # находим первую цену
+    filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
+    filter_item.click()  # жмем на фильтр
+    filter_hilo = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_hilo)
+    filter_hilo.click()  # выбираем от большего к меньшему
+    first_price = driver.find_element(*PageObject.SauceDemo.ShopPage.first_elem_price)
+    price = first_price.text.replace("$", '').split('.')[0]
+    assert int(first_item.split('.')[0]) < int(price)  # сверяем
+
+
+def test_items_desc_sort_name(driver):
+    wait_page_open(driver)  # ждем открытия страницы
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    first_item = (list_items_names(driver))[0]  # находим первую цену
+    filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
+    filter_item.click()  # жмем на фильтр
+    filter_za = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_za)
+    filter_za.click()  # выбираем от большего к меньшему
+    first_item_name = driver.find_element(*PageObject.SauceDemo.ShopPage.first_elem_name)
+    assert first_item.text != first_item_name.text  # сверяем

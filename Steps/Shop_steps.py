@@ -33,3 +33,10 @@ def list_items_price(driver):
     return items_price
 
 
+def list_items_names(driver):
+    items = driver.find_elements(By.CLASS_NAME, "inventory_item_name")
+    items_name = []
+    for item in items:
+        # price_item = item.text.replace("$", '')
+        items_name.append(item)
+    return items_name
