@@ -38,6 +38,7 @@ def click_submit(driver):
 
 
 def login_method(driver, login, pwd):
+    wait_page_open(driver)  # ждем открытия страницы
     enter_login(driver, login)
     enter_password(driver,pwd)
     click_submit(driver)

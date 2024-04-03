@@ -28,6 +28,7 @@ class ShopPage:
     menu_btn = (By.ID, "react-burger-menu-btn")
     about_btn = (By.ID, "about_sidebar_link")
     reset_btn = (By.ID, "reset_sidebar_link")
+    logout_btn = (By.ID,"logout_sidebar_link")
 
 
 class ItemDescription:

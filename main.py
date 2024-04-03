@@ -20,7 +20,6 @@ def test_incorrect_login(driver):
 
 
 def test_add_item_in_cart_from_shop(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
@@ -29,7 +28,6 @@ def test_add_item_in_cart_from_shop(driver):
 
 
 def test_delete_item_from_cart(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
@@ -44,7 +42,6 @@ def test_delete_item_from_cart(driver):
 
 
 def test_add_item_from_description(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар
     item.click()  # открываем его
@@ -54,7 +51,6 @@ def test_add_item_from_description(driver):
 
 
 def test_delete_item_from_description(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар по имени
     item.click()  # открываем его
@@ -63,7 +59,6 @@ def test_delete_item_from_description(driver):
 
 
 def test_item_description_by_name(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_name(driver, "Sauce Labs Backpack")  # находим товар по имени
     item.click()  # открываем его
@@ -72,7 +67,6 @@ def test_item_description_by_name(driver):
 
 
 def test_item_description_by_image(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     item = find_item_by_img_name(driver, "Sauce Labs Backpack")  # находим товар по имени картинки
     item.click()  # открываем его
@@ -81,7 +75,6 @@ def test_item_description_by_image(driver):
 
 
 def test_purchase_complete(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     go_to_cart(driver)  # переходим в корзину
@@ -100,7 +93,6 @@ def test_purchase_complete(driver):
 
 
 def test_items_asc_sort_price(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     first_item = (list_items_price(driver))[0]  # находим первую цену
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
@@ -113,7 +105,6 @@ def test_items_asc_sort_price(driver):
 
 
 def test_items_desc_sort_price(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     first_item = (list_items_price(driver))[0]  # находим первую цену
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
@@ -126,7 +117,6 @@ def test_items_desc_sort_price(driver):
 
 
 def test_items_desc_sort_name(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     first_item = (list_items_names(driver))[0]  # находим первое имя
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
@@ -138,7 +128,6 @@ def test_items_desc_sort_name(driver):
 
 
 def test_items_asc_sort_name(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     first_item = (list_items_names(driver))[0]  # находим первое имя
     filter_item = driver.find_element(*PageObject.SauceDemo.ShopPage.filter_btn)
@@ -154,7 +143,6 @@ def test_items_asc_sort_name(driver):
 
 
 def test_about_btn(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)
     menu_button.click()
@@ -164,7 +152,6 @@ def test_about_btn(driver):
 
 
 def test_reset_button(driver):
-    wait_page_open(driver)  # ждем открытия страницы
     login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
     add_to_cart(driver, PageObject.SauceDemo.ShopPage.backpack_add_to_cart_btn)  # добавляем в корзину
     # находим все кнопки ДОБАВИТЬ(их 5 шт, т.к. 1 товар в корзине добавлен)
@@ -181,3 +168,13 @@ def test_reset_button(driver):
     count_after = len(add_to_cart_btn_after)  # считаем их
     assert count_after > count_before  # сравниваем кол-во до и после
 
+
+def test_logout(driver):
+    login_method(driver, correct_login, correct_password)  # вводим логин, пароль, логинимся
+    assert driver.current_url == url_shop  # проверяем что на странице магазина
+    menu_button = driver.find_element(*PageObject.SauceDemo.ShopPage.menu_btn)  # находим кнопку меню
+    menu_button.click()  # жмем ее
+    logout_button = driver.find_element(*PageObject.SauceDemo.ShopPage.logout_btn)  # находим кнопку логаут
+    time.sleep(1)
+    logout_button.click()  # жмем ее
+    assert driver.current_url == url  # проверяем что на странице авторизации
