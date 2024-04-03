@@ -1,4 +1,8 @@
+import time
+
 import pytest
+
+from Steps.Shop_steps import enter_text
 from credentials import *
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,16 +26,6 @@ def wait_page_open(driver):
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.TAG_NAME, "body")))
 
 
-def enter_login(driver, login):
-    login_field = driver.find_element(*PageObject.SauceDemo.LoginPage.username_field)
-    login_field.send_keys(login)
-
-
-def enter_password(driver, pwd):
-    pass_field = driver.find_element(*PageObject.SauceDemo.LoginPage.password_field)
-    pass_field.send_keys(pwd)
-
-
 def click_submit(driver):
     submit_button = driver.find_element(*PageObject.SauceDemo.LoginPage.login_button)
     submit_button.click()
@@ -39,7 +33,7 @@ def click_submit(driver):
 
 def login_method(driver, login, pwd):
     wait_page_open(driver)  # ждем открытия страницы
-    enter_login(driver, login)
-    enter_password(driver,pwd)
+    enter_text(driver, PageObject.SauceDemo.LoginPage.username_field, login)
+    enter_text(driver, PageObject.SauceDemo.LoginPage.password_field, pwd)
     click_submit(driver)
 
