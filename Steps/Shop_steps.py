@@ -40,3 +40,13 @@ def list_items_names(driver):
         # price_item = item.text.replace("$", '')
         items_name.append(item)
     return items_name
+
+
+def get_length(driver, locator):
+    return len(driver.find_elements(*locator))
+
+
+def get_text(driver, locator):
+    el = driver.find_element(*locator)
+    return el.text
+
