@@ -50,3 +50,7 @@ def get_text(driver, locator):
     el = driver.find_element(*locator)
     return el.text
 
+
+def click_element(driver, locator):
+    driver.find_element(*locator).click()
+
