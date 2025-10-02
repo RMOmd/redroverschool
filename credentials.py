@@ -1,3 +1,4 @@
+## по красоте всё это перенести в .env
 url = 'https://www.saucedemo.com/'
 url_shop = "https://www.saucedemo.com/inventory.html"
 correct_login = "standard_user"
